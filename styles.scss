@@ -1,0 +1,901 @@
+//////////настройка цветов
+
+//$basicButtonColor    :#13a5af;
+$basicButtonColor    :#1e7ebe;
+$basicButtonFontColor:#fff;
+$background          :darken($basicButtonColor, 5);
+$windowColor         :darken(#fafafa, 1);
+$playdotColor:rgb(65, 185, 65);
+
+
+body {
+    margin               : 0;
+    display              : grid;
+    grid-template-columns: 1fr;
+    grid-template-rows   : 40px 180px 1fr 40px;
+    height               : 100vh;
+
+    background: $windowColor;
+    overflow  : hidden;
+
+
+}
+
+.header {
+    background : $background;
+    color      : #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    font-weight          : 500;
+    display              : grid;
+    grid-template-columns: 1fr 60px;
+
+    .title {
+        padding-left: 20px;
+        display     : flex;
+        align-items : center;
+    }
+
+    .setup {
+        padding        : 0;
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+
+        img {
+            height: 30px;
+            width : auto;
+        }
+    }
+
+    .setup:hover {
+        background-color: #1e7ebe;
+
+    }
+
+}
+
+.menu {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    .queetabs {
+        padding       : 20px;
+        padding-bottom: 0;
+        width         : 100%;
+        display       : block;
+        background    : #fff;
+
+
+    }
+
+    .buttons {
+        padding   : 10px 20px;
+        width     : calc(100% - 40px);
+        border-top: 1px solid darken($windowColor, 10);
+        margin-top: -1px;
+        ;
+    }
+
+    .right {
+        float: right;
+    }
+
+
+    .buttons:before {
+        content : "";
+        position: relative;
+        display : block;
+        width   : 100%;
+        ;
+        top : -15px;
+        left: -20px;
+    }
+
+    .checkcontainer {
+        margin: 10px 0;
+    }
+
+    .button {
+        display        : inline-flex;
+        align-items    : center;
+        justify-content: center;
+        background     : $basicButtonColor;
+        color          : $basicButtonFontColor;
+        position       : relative;
+        padding        : 10px 15px;
+        border-radius  : 3px;
+        cursor         : pointer;
+        z-index        : 10;
+
+        img {
+            display     : inline-block;
+            height      : 35px;
+            width       : auto;
+            margin-right: 15px;
+        }
+
+        div {
+            display        : inline-flex;
+            align-items    : center;
+            justify-content: center;
+        }
+    }
+
+
+    .button::before {
+        content            : "";
+        display            : block;
+        position           : absolute;
+        //left:3px;
+        left               : 0px;
+        top                : calc(100% - 6px);
+        height             : 3px;
+        border-bottom      : 4px solid lighten($background, 40);
+        //width:calc(100% - 6px);
+        width              : calc(0% - 0px);
+        transition-property: width;
+        transition-duration: 1s;
+    }
+
+    .button:hover::before {
+        content      : "";
+        display      : block;
+        position     : absolute;
+        //left:3px;
+        left         : 0px;
+        top          : calc(100% - 6px);
+        height       : 3px;
+        border-bottom: 4px solid lighten($background, 40);
+        //width:calc(100% - 6px);
+        width        : calc(100% - 0px);
+    }
+
+
+
+
+
+    .button:hover {
+        background: lighten($basicButtonColor, 3);
+    }
+
+    .notext {
+        background: transparent;
+
+        img {
+            display     : inline-block;
+            height      : 35px;
+            width       : auto;
+            margin-right: 0;
+        }
+    }
+
+
+
+    .alert,
+    .alert:hover {
+
+        background: $basicButtonColor repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.068) 0 15px, transparent 15px 30px);
+
+        -webkit-animation: magic 10s linear infinite;
+        animation        : magic 10s linear infinite;
+        -moz-animation   : magic 10s linear infinite;
+        background-repeat: repeat-x;
+
+
+        background-size: 400% 100%;
+
+
+    }
+
+    @-webkit-keyframes magic {
+        0% {
+            background-position: 100% 50%
+        }
+
+        100% {
+            background-position: 0% 50%
+        }
+    }
+
+    @-moz-keyframes magic {
+        0% {
+            background-position: 100% 50%
+        }
+
+        100% {
+            background-position: 0% 50%
+        }
+    }
+
+    @keyframes magic {
+        0% {
+            background-position: 100% 50%
+        }
+
+        100% {
+            background-position: 0% 50%
+        }
+    }
+
+    .tab {
+        border                    : 1px solid darken($windowColor, 10);
+        border-radius             : 8px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius : 0;
+        border-bottom             : none;
+        padding                   : 5px 10px;
+        margin                    : 0 1px;
+        display                   : inline-block;
+        box-shadow                : inset 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
+        cursor                    : pointer;
+        color                     : darken($windowColor, 60);
+    }
+
+    .tab:hover {
+        box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
+
+    }
+
+    .tab::before{
+        content:'';
+        position: relative;
+        display: inline-block;
+        //left:0;
+        //top:0;
+        width:10px;
+        height:10px;
+        background: radial-gradient(circle, #ccc 0%,lighten(#ccc,100) 100%);
+        border-radius: 50%;
+        margin-right:10px;
+        border: darken(#ccc,10) solid 1px;
+    
+        
+    }
+
+    .selected {
+        box-shadow : none;
+        background : $windowColor;
+        padding-top: 10px;
+        z-index    : 1000000;
+        color      : darken($windowColor, 80);
+    }
+
+    .selected:hover {
+        box-shadow : none;
+        background : $windowColor;
+        padding-top: 10px;
+        z-index    : 1000000;
+        color      : darken($windowColor, 80);
+    }
+
+
+    .playing{
+        
+    }
+.playing::before{
+    content:'';
+    position: relative;
+    display: inline-block;
+    //left:0;
+    //top:0;
+    width:6px;
+    height:6px;
+    background: radial-gradient(circle, $playdotColor 10%,lighten($playdotColor,100) 100%);
+    border-radius: 50%;
+    margin-right:10px;
+    border: darken(rgb(90, 212, 90),10) solid 1px;
+
+    
+}
+
+}
+
+.content {
+    margin    : 0 30px;
+    display   : block;
+    width     : calc(100% - 60px);
+    color     : darken($windowColor, 3);
+    border    : solid 1px darken($windowColor, 5);
+    background: #fff;
+
+    position: relative;
+    height  : 100%;
+
+
+    .row {
+        display              : grid;
+        grid-template-columns: 30px 160px 100px 1fr 1fr 50px;
+        color                : darken($background, 20);
+        font-family          : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        width                : 100%;
+        cursor               : pointer;
+        padding              : 5px 0;
+
+        .tableheader {
+            padding   : 8px 10px;
+            color     : #fff;
+            background: darken($windowColor, 35);
+
+        }
+
+
+
+    }
+
+    .row:nth-child(2n) {
+        background: $windowColor;
+    }
+
+    .row:hover {
+        background: darken($windowColor, 10);
+    }
+
+    .selected {
+        display              : grid;
+        grid-template-columns: 30px 160px 100px 1fr 1fr 50px;
+        font-family          : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        width                : 100%;
+        cursor               : pointer;
+        padding              : 5px 0;
+        color                : #fff;
+        background           : lighten($background, 0);
+    }
+
+    .selected:nth-child(2n) {
+        color     : #fff;
+        background: lighten($background, 0);
+    }
+
+}
+
+.footer {
+    display        : flex;
+    width          : calc(100% - 70px);
+    padding        : 7px 35px;
+    align-items    : flex-end;
+    justify-content: flex-end;
+
+    .footer__item {
+        display    : inline-flex;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color      : #000;
+
+        .footer__header {
+            display    : inline-block;
+            font-weight: 500;
+        }
+
+        .footer__content {
+            display    : inline-block;
+            margin-left: 10px;
+        }
+    }
+
+
+}
+
+///////Yes/No dialog
+.dialog {
+    display              : none;
+    grid-template-rows   : 40px 1fr;
+    grid-template-columns: 1fr;
+    width                : 600px;
+    height               : 200px;
+    background           : $windowColor;
+    position             : fixed;
+    top                  : 0;
+    left                 : 0;
+    right                : 0;
+    bottom               : 0;
+    margin               : auto;
+    border-radius        : 3px;
+    box-shadow           : 0px 0px 50px 30px rgba(0, 0, 0, 0.15), 0px 0px 10px 3px rgba(0, 0, 0, 0.15);
+
+}
+
+.dialog__header {
+    background : $background;
+    color      : #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding    : 10px;
+    font-weight: 500;
+}
+
+.dialog__body {
+    display              : grid;
+    grid-template-columns: 130px 1fr;
+    width                : 100%;
+
+}
+
+.dialog__image {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+
+    img {
+
+        width : 90px;
+        height: auto;
+    }
+}
+
+.dialog__content {
+    display              : grid;
+    grid-template-rows   : 1fr 60px;
+    grid-template-columns: 1fr;
+
+}
+
+#content {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    font-size      : 20px;
+    font-weight    : 400;
+    color          : darken($windowColor, 70);
+    font-family    : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dialog__buttons {
+    display        : flex;
+    align-items    : flex-end;
+    justify-content: flex-end;
+    padding-bottom : 20px;
+    padding-right  : 20px;
+
+    .dialog__button {
+        display        : inline-flex;
+        align-items    : center;
+        position       : relative;
+        justify-content: center;
+        background     : $basicButtonColor;
+        color          : $basicButtonFontColor;
+
+        font-family  : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding      : 10px 15px;
+        border-radius: 3px;
+        cursor       : pointer;
+        z-index      : 10;
+        margin-left  : 3px;
+    }
+
+
+    .dialog__button:hover {
+        background: lighten($basicButtonColor, 5);
+        color     : $basicButtonFontColor;
+    }
+
+    .dialog__button::before {
+        content            : "";
+        display            : block;
+        position           : absolute;
+        //left:3px;
+        left               : 0px;
+        top                : calc(100% - 6px);
+        height             : 3px;
+        border-bottom      : 4px solid lighten($background, 40);
+        //width:calc(100% - 6px);
+        width              : calc(0% - 0px);
+        transition-property: width;
+        transition-duration: 1s;
+    }
+
+    .dialog__button:hover::before {
+        content      : "";
+        display      : block;
+        position     : absolute;
+        //left:3px;
+        left         : 0px;
+        top          : calc(100% - 6px);
+        height       : 3px;
+        border-bottom: 4px solid lighten($background, 40);
+        //width:calc(100% - 6px);
+        width        : calc(100% - 0px);
+    }
+
+    .dialog__button:first-child {
+        margin-left: 0;
+    }
+}
+
+
+
+.adddialog {
+    display              : none;
+    grid-template-rows   : 40px 1fr 50px;
+    grid-template-columns: 1fr;
+    width                : 600px;
+    height               : 730px;
+    background           : $windowColor;
+    position             : fixed;
+    top                  : 0;
+    left                 : 0;
+    right                : 0;
+    bottom               : 0;
+    margin               : auto;
+    border-radius        : 3px;
+    box-shadow           : 0px 0px 50px 30px rgba(0, 0, 0, 0.15), 0px 0px 10px 3px rgba(0, 0, 0, 0.15);
+    z-index              : 100000000000000000;
+
+
+    .adddialog__header {
+        background : $background;
+        color      : #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding    : 10px;
+        font-weight: 500;
+    }
+
+    .adddialog__content {
+        display: block;
+        padding: 30px;
+
+        .dialogitem {
+
+            display              : grid;
+            grid-template-columns: 150px 1fr;
+            margin               : 10px 0;
+            font-family          : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            input {
+                width : 100%;
+                height: 25px;
+            }
+
+            textarea {
+                width : 100%;
+                height: 100px;
+
+            }
+
+        }
+    }
+
+}
+
+
+
+
+
+.setupdialog {
+    display              : none;
+    grid-template-rows   : 40px 1fr 50px;
+    grid-template-columns: 1fr;
+    width                : 600px;
+    height               : 500px;
+    background           : $windowColor;
+    position             : fixed;
+    top                  : 0;
+    left                 : 0;
+    right                : 0;
+    bottom               : 0;
+    margin               : auto;
+    border-radius        : 3px;
+    box-shadow           : 0px 0px 50px 30px rgba(0, 0, 0, 0.15), 0px 0px 10px 3px rgba(0, 0, 0, 0.15);
+    z-index              : 100000000000000000;
+
+
+    .setupdialog__header {
+        background : $background;
+        color      : #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding    : 10px;
+        font-weight: 500;
+    }
+
+    .setupdialog__content {
+        display: block;
+        padding: 30px;
+
+        .dialogitem {
+
+            display    : block;
+            width      : 100%;
+            margin     : 10px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            input {
+                width : 100%;
+                height: 25px;
+            }
+
+            textarea {
+                width : 100%;
+                height: 100px;
+
+            }
+
+        }
+    }
+
+}
+
+///////////////компоненты формы
+/// .
+/// 
+
+
+.slider {
+    display         : block;
+    width           : 100%;
+    margin          : 20px 0;
+    height          : 30px;
+    position        : relative;
+    background-color: darken($windowColor, 2);
+    border          : solid 1px darken($windowColor, 5);
+    ;
+}
+
+.slider__min {
+    display        : inline-flex;
+    justify-content: flex-end;
+
+    padding: 0 5px;
+}
+
+.slider__bg {
+    display         : inline-block;
+    width           : calc(100% - 60px);
+    background-color: darken($windowColor, 20);
+    height          : 10px;
+    position        : relative;
+
+    top: 8px;
+}
+
+.slider__progress {
+    display         : inline-block;
+    width           : calc(100% - 120px);
+    background-color: $background;
+    height          : 10px;
+    width           : 30%;
+    position        : relative;
+    top             : -7px;
+}
+
+
+.slider__tag {}
+
+.slider__max {
+    display: inline-flex;
+    padding: 0 5px;
+
+}
+
+.slider__value {
+    display : inline-flex;
+    position: relative;
+
+    left: 0;
+
+}
+
+
+////////////////@at-root
+.dropdown__container {
+    display              : grid;
+    grid-template-columns: 1fr 40px;
+    width                : calc(100% + 8px);
+
+    .dropdown__arrow {
+        background                : $background;
+        color                     : #fff;
+        width                     : 100%;
+        border-top-right-radius   : 3px;
+        border-bottom-right-radius: 3px;
+
+
+    }
+
+    .dropdown__arrow::after {
+        content     : "";
+        position    : relative;
+        left        : 10px;
+        top         : 12px;
+        width       : 0px;
+        height      : 0px;
+        display     : block;
+        //background: red;
+        border      : transparent 10px solid;
+        border-top  : #fff 10px solid;
+
+    }
+}
+
+
+
+.popup {
+    height    : 200px;
+    width     : 200px;
+    background: #fff;
+    border    : 1px solid darken($windowColor, 20);
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
+    position  : fixed;
+    display   : block;
+    left      : 0;
+    top       : 0;
+    z-index   : 10000000000000000000000000;
+    opacity   : 1;
+
+    .popitem {
+        display        : flex;
+        justify-content: flex-start;
+        width          : calc(100% - 20px);
+        font-family    : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        height         : 25px;
+        cursor         : pointer;
+        padding        : 5px 10px;
+    }
+
+    .popitem:hover {
+        background: $background;
+        color     : #fff;
+    }
+}
+
+
+/////////grid
+.grid__container {
+    display              : grid;
+    grid-template-columns: 1fr;
+    grid-template-rows   : 45px 1fr 40px;
+    position             : relative;
+    top                  : 0;
+    left                 : 0;
+    right                : 0;
+    bottom               : 0;
+    width                : auto;
+    height               : auto;
+
+
+    * {
+        //border: solid 1px red;
+    }
+
+    .grid__menu {
+        display        : flex;
+        align-items    : center;
+        justify-content: flex-end;
+
+        .button {
+            display        : inline-flex;
+            align-items    : center;
+            justify-content: center;
+            background     : $basicButtonColor;
+            color          : $basicButtonFontColor;
+            position       : relative;
+            padding        : 2px;
+            border-radius  : 3px;
+            cursor         : pointer;
+            z-index        : 10;
+
+            img {
+                display     : inline-block;
+                height      : 35px;
+                width       : auto;
+                margin-right: 15px;
+            }
+
+            div {
+                display        : inline-flex;
+                align-items    : center;
+                justify-content: center;
+            }
+        }
+
+
+        .button::before {
+            content            : "";
+            display            : block;
+            position           : absolute;
+            //left:3px;
+            left               : 0px;
+            top                : calc(100% - 6px);
+            height             : 3px;
+            border-bottom      : 4px solid lighten($background, 40);
+            //width:calc(100% - 6px);
+            width              : calc(0% - 0px);
+            transition-property: width;
+            transition-duration: 1s;
+        }
+
+        .button:hover::before {
+            content      : "";
+            display      : block;
+            position     : absolute;
+            //left:3px;
+            left         : 0px;
+            top          : calc(100% - 6px);
+            height       : 3px;
+            border-bottom: 4px solid lighten($background, 40);
+            //width:calc(100% - 6px);
+            width        : calc(100% - 0px);
+        }
+
+
+
+
+
+        .button:hover {
+            background: lighten($basicButtonColor, 3);
+        }
+
+        .notext {
+            background: transparent;
+
+            img {
+                display     : inline-block;
+                height      : 35px;
+                width       : auto;
+                margin-right: 0;
+            }
+        }
+
+    }
+
+    .grid__content {
+        color     : darken($windowColor, 3);
+        border    : solid 1px darken($windowColor, 5);
+        background: #fff;
+        overflow-y: scroll;
+
+        .row {
+            display              : grid;
+            grid-template-columns: 30px 160px 100px 1fr 1fr 50px;
+            color                : darken($background, 20);
+            font-family          : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width                : 100%;
+            cursor               : pointer;
+            padding              : 5px 0;
+
+            img {
+                height: 25px;
+                width : auto;
+                ;
+            }
+
+            .tableheader {
+                padding   : 8px 10px;
+                color     : #fff;
+                background: darken($windowColor, 35);
+
+            }
+
+            div {
+                padding-left: 20px;
+            }
+
+        }
+
+        .row:nth-child(2n) {
+            background: $windowColor;
+        }
+
+        .row:hover {
+            background: darken($windowColor, 10);
+        }
+        .selected {
+            display              : grid;
+            grid-template-columns: 30px 160px 100px 1fr 1fr 50px;
+            font-family          : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width                : 100%;
+            cursor               : pointer;
+            padding              : 5px 0;
+            color                : #fff;
+            background           : lighten($background, 0);
+        }
+    
+        .selected:nth-child(2n) {
+            color     : #fff;
+            background: lighten($background, 0);
+        }
+        .selected:hover {
+            background           : lighten($background, 0);
+        }
+        
+    }
+
+    .grid__footer {}
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+
+    <link href="./styles.css" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"
+      integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Менеджер очередей</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="title">AnyTalk 1.0</div>
+      <div class="setup" id="setup"><img src="img/setup.png" /></div>
+    </div>
+    <div class="menu">
+      <div class="queetabs"></div>
+      <div class="buttons">
+        <div class="checkcontainer">
+      &nbsp;
+        </div>
+        <div class="button" id="stopquee">
+          <img src="img/stop.png" />
+          <div>Остановить очередь</div>
+        </div>
+        <div class="button" id="startquee">
+          <img src="img/start.png" />
+          <div>Запустить очередь</div>
+        </div>
+        <div class="button" id="wipe">
+          <img src="img/wipe.png" />
+          <div>Очистить очередь</div>
+        </div>
+        <div class="button" id="delete">
+          <img src="img/delete.png" />
+          <div>Удалить выделенное</div>
+        </div>
+        <div class="button " style="display:none">
+          <img src="img/play.png" />
+          <div>Проиграть следующее</div>
+        </div>
+        <div class="button right notext" id="add">
+          <img src="img/add.png" />
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <div class="content"></div>
+    <div class="footer"></div>
+
+    <div class="dialog">
+      <div class="dialog__header"></div>
+      <div class="dialog__body">
+        <div class="dialog__image">
+          <img src="img/wipe.png" class="dialog__imagesrc" />
+        </div>
+        <div class="dialog__content">
+          <div id="content"></div>
+          <div class="dialog__buttons">
+            <div class="dialog__button" id="dialog__yes">Да</div>
+            <div class="dialog__button" id="dialog__no">Нет</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adddialog">
+      <div class="adddialog__header">Добавление в очередь</div>
+
+      <div class="adddialog__content">
+        <div class="dialogitem">
+          <div class="dialogitem__header">Дата</div>
+          <div class="dialogitem__container">
+            <input type="text" name="" id="date" placeholder="ДД.ММ.ГГГГ" />
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Время</div>
+          <div class="dialogitem__container">
+            <input type="text" name="" id="time" placeholder="ЧЧ.ММ.СС" />
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Приоритет</div>
+          <div class="dialogitem__container">
+            <input type="text" name="" id="priority" />
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Очередь</div>
+          <div class="dialogitem__container">
+            <div
+              class="dropdown"
+              id="quee"
+              currentid=""
+              currentindex=""
+              currenttext=""
+              onreadyFunc="alt('Ready')"
+              onselectFunc="buildQueeDrop"
+            ></div>
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Голос</div>
+          <div class="dialogitem__container">
+            <div
+              class="dropdown"
+              id="voice"
+              currentid=""
+              currentindex=""
+              currenttext=""
+              onreadyFunc="buildVoiceDrop"
+              onselectFunc="buildVoiceDrop"
+            ></div>
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Амплуа</div>
+          <div class="dialogitem__container">
+            <div
+              class="dropdown"
+              id="amplua"
+              currentid=""
+              currentindex=""
+              currenttext=""
+              onreadyFunc="buildAmpluaDrop"
+              onselectFunc="buildAmpluaDrop"
+            ></div>
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Скорость</div>
+          <div class="dialogitem__container">
+            <div
+              class="slider"
+              id="speed"
+              min="0"
+              max="2"
+              current="1"
+              onreadyFunc="alt('fuck')"
+            ></div>
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Содержание</div>
+          <div class="dialogitem__container">
+            <textarea name="" id="text" cols="30" rows="10" id=""></textarea>
+          </div>
+        </div>
+        <div class="dialogitem">
+          <div class="dialogitem__header">Пример API</div>
+          <div class="dialogitem__container">
+            <textarea name="" id="apitext" cols="30" rows="10"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="dialog__buttons">
+        <div class="dialog__button" id="adddialog__yes">Да</div>
+        <div class="dialog__button" id="adddialog__no">Нет</div>
+      </div>
+    </div>
+
+    <div class="setupdialog">
+      <div class="setupdialog__header">Настройки</div>
+
+      <div class="setupdialog__content">
+        <div class="dialogitem">
+          <div class="grid" id="queelist" data="gueelist" gridheight="300"></div>
+        </div>
+      </div>
+      <div class="dialog__buttons">
+            <div class="dialog__button" id="setupdialog__OK">Закрыть</div>
+      </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+    <script src="./speak.js"></script>
+  </body>
+</html>
